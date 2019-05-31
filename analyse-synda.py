@@ -24,6 +24,13 @@ def create_connection(db_file):
 
 
 def get_data_transfer_vols(conn):
+	"""
+	Retrieve the volume of data transferred per datanode
+
+	:param conn: Database connection
+	:return: datanodes [list], volumes [list]
+	"""
+
 	query = conn.cursor()
 	query.execute(
 		"select data_node, cast(sum(size)/(1024*1024*1024*1024.) as float) from file where status='done' group by data_node;")
@@ -39,6 +46,13 @@ def get_data_transfer_vols(conn):
 
 
 def get_data_transfer_rates(conn, datanodes):
+	"""
+	Retrieve the data transfer rates per datanode
+
+	:param conn: Database connection
+	:return: rates[[],[]]
+	"""
+
 	result = []
 	for datanode in datanodes:
 		query = conn.cursor()
