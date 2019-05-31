@@ -1,0 +1,2 @@
+# synda-status
+Synda monitoring 
