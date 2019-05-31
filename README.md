@@ -1,2 +1,2 @@
-# synda-status
-Synda monitoring 
+# ruthpetrie.github.io
+Synda status
