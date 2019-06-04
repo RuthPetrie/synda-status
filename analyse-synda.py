@@ -3,6 +3,7 @@
 import sqlite3
 import os
 import matplotlib.pyplot as plt
+import datetime
 from sqlite3 import Error
 
 database = "/gws/nopw/j04/cmip6_prep_vol1/synda/cmip6_sdt_backups/sdt.db.latest"
@@ -63,8 +64,9 @@ def get_data_transfer_rates(conn, datanodes):
 	return result
 
 
-def plot_data_vols(nodes, volumes):
+def plot_data_vols(nodes, volumes, title):
 	plt.figure(0)
+	plt.title(title)
 	plt.bar(nodes, volumes)
 	plt.ylabel('Volume Transferred (TB)')
 	plt.xticks(rotation=90)
@@ -72,8 +74,9 @@ def plot_data_vols(nodes, volumes):
 	plt.savefig('docs/images/volumes.png', format='png')
 
 
-def plot_transfer_rates(datanodes, transfer_rates):
+def plot_transfer_rates(datanodes, transfer_rates, title):
 	plt.figure(1)
+	plt.title(title)
 	plt.boxplot(transfer_rates, labels=datanodes)
 	plt.ylabel('Transfer rate (MiB/s)')
 	plt.xticks(rotation=90)
@@ -82,11 +85,13 @@ def plot_transfer_rates(datanodes, transfer_rates):
 
 
 def main():
+
+	title = datetime.datetime.now().strftime("%Y-%m-%d")
 	conn = create_connection(database)
 	datanodes, volumes = get_data_transfer_vols(conn)
-	plot_data_vols(datanodes, volumes)
+	plot_data_vols(datanodes, volumes, title)
 	transfer_rates = get_data_transfer_rates(conn, datanodes)
-	plot_transfer_rates(datanodes, transfer_rates)
+	plot_transfer_rates(datanodes, transfer_rates, title)
 
 
 if __name__ == "__main__":

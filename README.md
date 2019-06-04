@@ -1,2 +1,2 @@
-# ruthpetrie.github.io
-Synda status
+# Synda status site
+https://github.com/RuthPetrie/synda-status
