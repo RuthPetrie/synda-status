@@ -5,7 +5,7 @@ import os
 import matplotlib.pyplot as plt
 import datetime
 from sqlite3 import Error
-
+plt.switch_backend('agg')
 database = "/gws/nopw/j04/cmip6_prep_vol1/synda/cmip6_sdt_backups/sdt.db.latest"
 
 
@@ -71,7 +71,7 @@ def plot_data_vols(nodes, volumes, title):
 	plt.ylabel('Volume Transferred (TB)')
 	plt.xticks(rotation=90)
 	plt.tight_layout()
-	plt.savefig('docs/images/volumes.png', format='png')
+	plt.savefig('/home/users/rpetrie/synda/synda-status/docs/images/volumes.png', format='png')
 
 
 def plot_transfer_rates(datanodes, transfer_rates, title):
@@ -81,7 +81,7 @@ def plot_transfer_rates(datanodes, transfer_rates, title):
 	plt.ylabel('Transfer rate (MiB/s)')
 	plt.xticks(rotation=90)
 	plt.tight_layout()
-	plt.savefig('docs/images/rates.png', format='png')
+	plt.savefig('/home/users/rpetrie/synda/synda-status/docs/images/rates.png', format='png')
 
 
 def main():
